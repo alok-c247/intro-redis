@@ -50,5 +50,5 @@ Redis supports Pub/Sub with pattern matching and many different varieties of dat
 - ```npm i ``` in every service directory 
 
 ## Start local server
-
-Run ```npm run dev ``` in every service directory.
+- Connect redis by running ``` redis-cli ``` in terminal
+- Run ```npm run dev ``` in every service directory.
