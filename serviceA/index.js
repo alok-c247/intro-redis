@@ -20,31 +20,36 @@ let redisClient;
 
 app.get("/photos", async (req, res) => {
   try {
-    // Check the redis store for the data first
     const albumId = req.query.albumId;
+  
+
+    // Check the redis store for the data first
     const cache = await redisClient.get(`photos?albumId=${albumId}`);
 
-    if (cache) {
+    if (cache) { // cache-hit
       return res.status(200).send({
         error: false,
         message: `Fetched from the cache`,
         data: JSON.parse(cache),
       });
-    } else {
+    } else { // cache-miss
+
       // When the data is not found in the cache then we can make request to the server or from database
+      //db call
       const data = await axios.get(
         `https://jsonplaceholder.typicode.com/photos${
           albumId ? `?albumId=${albumId}` : ""
         } `
       );
-      
+
       // save the record in the cache for subsequent request
       redisClient.set(`photos?albumId=${albumId}`, JSON.stringify(data.data), {
-        EX: 30, // Set the specified expire time, in seconds.
+        EX: 20, // Set the specified expire time, in seconds.
         NX: true, // Only set the key if it does not already exist.
       });
 
-      await redisClient.publish("channel_1", "msg from service A - server api called");
+      // PUB/SUB example
+      await redisClient.publish("channel", "msg from service A - server api called");
 
       // return the result to the client
       return res.status(200).send({

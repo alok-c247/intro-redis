@@ -15,23 +15,15 @@ let redisClient;
   redisClient.on("ready", () => console.error(`✅ Redis ready for Service B`));
 
   await redisClient.connect();
+
+  redisClient.subscribe("channel", (message) => {
+    if (message) {
+      console.log("New msg:", message);
+    }
+  });
+
 })();
 
-redisClient.subscribe("channel_1", (err, count) => {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log("Subscribed to " + count + " channels");
-  }
-});
-
-redisClient.on("message", async (channel, message) => {
-  console.log(`Receive ${message} from ${channel}`);
-  try {
-  } catch (err) {
-    console.log("err in redis msg", err);
-  }
-});
 
 app.listen(port, () => {
   console.log(`✅ Server running on port ${port}`);
