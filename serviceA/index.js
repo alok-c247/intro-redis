@@ -18,6 +18,8 @@ let redisClient;
   await redisClient.connect();
 })();
 
+const c = "ba";
+
 app.get("/photos", async (req, res) => {
   try {
     const albumId = req.query.albumId;

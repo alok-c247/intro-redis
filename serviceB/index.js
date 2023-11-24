@@ -4,6 +4,7 @@ import redis from "redis";
 const app = express();
 
 const port = 3002;
+const key = "asas";
 
 // make a connection to the local instance of redis
 let redisClient;
