@@ -47,7 +47,7 @@ Redis supports Pub/Sub with pattern matching and many different varieties of dat
 ## Installation
 
 - Install redis in local machine
-- ```npm i ``` in every service directory 
+- ```npm i ``` in every service directory in this project
 
 ## Start local server
 - Make sure redis server is ON and connect to redis by running ``` redis-cli ``` in terminal to check.

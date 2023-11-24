@@ -5,6 +5,7 @@ const app = express();
 
 const port = 3002;
 const key = "asasokodskod";
+const key2 = "asasokodskod";
 
 // make a connection to the local instance of redis
 let redisClient;

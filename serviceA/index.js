@@ -19,6 +19,7 @@ let redisClient;
 })();
 
 const c = "baaaasss";
+const c3 = "baaaasss";
 
 app.get("/photos", async (req, res) => {
   try {
