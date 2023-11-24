@@ -49,7 +49,7 @@ app.get("/photos", async (req, res) => {
       });
 
       // PUB/SUB example
-      await redisClient.publish("channel", "msg from service A - server api called");
+      await redisClient.publish("channel", "msg from service A - server api called.");
 
       // return the result to the client
       return res.status(200).send({
