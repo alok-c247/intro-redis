@@ -18,7 +18,7 @@ let redisClient;
   await redisClient.connect();
 })();
 
-const c = "ba";
+const c = "baaaasss";
 
 app.get("/photos", async (req, res) => {
   try {
